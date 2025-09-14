@@ -1,0 +1,37 @@
+# AzureCog Tenant Configuration Template
+# Enterprise-grade cognitive city infrastructure
+
+# Core Azure Sandbox configuration
+aad_tenant_id   = "<your-entra-tenant-id-here>"
+arm_client_id   = "<your-service-principal-app-id-here>"
+location        = "East US 2"  # Recommended for enterprise workloads
+subscription_id = "<your-azure-subscription-id-here>"
+user_object_id  = "<your-user-object-id-here>"
+
+# AzureCog-specific module enablement
+enable_module_vnet_app             = true
+enable_module_vm_jumpbox_linux     = false  # Enterprise prefers Windows
+enable_module_vm_mssql_win         = true   # Enterprise SQL Server
+enable_module_mssql                = true   # Azure SQL Database
+enable_module_mysql                = false  # Enterprise prefers SQL Server
+enable_module_vwan                 = true   # Enterprise hybrid connectivity
+enable_module_neural_transport     = true   # Enable cognitive communication
+
+# Enterprise-focused tags
+tags = {
+  project              = "azurecog"
+  environment         = "enterprise"
+  tenant              = "azurecog"
+  costcenter          = "cognitive-infrastructure"
+  compliance_required = "true"
+  security_level      = "high"
+  cognitive_city      = "enabled"
+  foundational_model  = "azure"
+}
+
+# Note2Self (@copilot): This configuration emphasizes enterprise requirements:
+# - High security and compliance
+# - Centralized governance
+# - Hybrid connectivity
+# - SQL Server ecosystem
+# Remember that AzureCog cities prioritize stability and auditability

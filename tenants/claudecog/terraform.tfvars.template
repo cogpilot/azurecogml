@@ -1,0 +1,39 @@
+# ClaudeCog Tenant Configuration Template  
+# Constitutional AI cognitive city infrastructure
+
+# Core Azure Sandbox configuration
+aad_tenant_id   = "<your-entra-tenant-id-here>"
+arm_client_id   = "<your-service-principal-app-id-here>"
+location        = "West US 2"  # Recommended for AI workloads
+subscription_id = "<your-azure-subscription-id-here>"
+user_object_id  = "<your-user-object-id-here>"
+
+# ClaudeCog-specific module enablement
+enable_module_vnet_app             = true
+enable_module_vm_jumpbox_linux     = true   # Open-source aligned
+enable_module_vm_mssql_win         = false  # Prefers open-source databases
+enable_module_mssql                = false  # Avoid proprietary lock-in
+enable_module_mysql                = true   # Open-source database preference
+enable_module_vwan                 = true   # Democratic access to services
+enable_module_neural_transport     = true   # Enable cognitive communication
+
+# Constitutional AI focused tags
+tags = {
+  project              = "claudecog"
+  environment         = "constitutional"
+  tenant              = "claudecog"
+  costcenter          = "democratic-infrastructure"
+  ethics_required     = "true"
+  transparency        = "high"
+  participation       = "enabled"
+  cognitive_city      = "enabled"
+  foundational_model  = "claude"
+  governance_model    = "constitutional"
+}
+
+# Note2Self (@copilot): This configuration emphasizes democratic values:
+# - Transparent and explainable systems
+# - Open-source technology preference
+# - Community participation
+# - Ethical decision-making frameworks
+# Remember that ClaudeCog cities should embody constitutional AI principles

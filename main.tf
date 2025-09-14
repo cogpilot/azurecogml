@@ -230,4 +230,66 @@ module "vm_devops_win" {
 
   depends_on = [module.vnet_app[0].azure_files_config_vm_extension_id] # Ensure that Azure Files is configured
 }
+
+module "neural_transport" {
+  source = "./modules/neural-transport"
+  
+  count = var.enable_module_neural_transport ? 1 : 0
+  
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  subnet_id          = module.vnet_app[0].subnets["snet-misc-03"].id
+  unique_seed        = module.naming.unique-seed
+  
+  # Neural transport configuration
+  transport_channels    = 5
+  bandwidth_limit_mbps  = 1000
+  enable_privacy_filter = true
+  
+  # Cognitive cities configuration
+  cognitive_cities = {
+    azurecog = {
+      tenant_id = "azurecog"
+      endpoint  = "https://azurecog.cognitive-cities.ai"
+      priority  = "high"
+    }
+    claudecog = {
+      tenant_id = "claudecog"
+      endpoint  = "https://claudecog.cognitive-cities.ai"  
+      priority  = "medium"
+    }
+    chatcogpt = {
+      tenant_id = "chatcogpt"
+      endpoint  = "https://chatcogpt.cognitive-cities.ai"
+      priority  = "medium"
+    }
+    cogrokx = {
+      tenant_id = "cogrokx"
+      endpoint  = "https://cogrokx.cognitive-cities.ai"
+      priority  = "high"
+    }
+    cogemini = {
+      tenant_id = "cogemini"
+      endpoint  = "https://cogemini.cognitive-cities.ai"
+      priority  = "medium"
+    }
+  }
+  
+  # Urban domains for cognitive communication
+  urban_domains = [
+    "transportation",
+    "energy", 
+    "governance",
+    "environment",
+    "housing",
+    "economy"
+  ]
+  
+  tags = merge(var.tags, {
+    module = "neural-transport"
+    cognitive_cities = "enabled"
+  })
+  
+  depends_on = [module.vnet_app[0].resource_ids]
+}
 #endregion

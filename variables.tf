@@ -80,6 +80,13 @@ variable "enable_module_vnet_onprem" {
   default     = false
 }
 
+variable "enable_module_neural_transport" {
+  type        = bool
+  description = "Set to true to enable the neural transport module for cognitive cities communication, false to skip it."
+  default     = false
+}
+}
+
 variable "enable_module_vwan" {
   type        = bool
   description = "Set to true to enable the vwan module, false to skip it."
